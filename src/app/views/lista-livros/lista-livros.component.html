@@ -4,7 +4,12 @@
     (pesquisaRealizada)="realizarPesquisa($event)"
   ></app-search-field>
   <p>Busque por assunto, autoria, nome...</p>
-  <app-resultado-pesquisa [listaLivros]="listaLivros"></app-resultado-pesquisa>
+  <div *ngFor="let listaLivros of resultadosPesquisa">
+    <h2 *ngIf="listaLivros?.length > 0">Resultado</h2>
+    <app-resultado-pesquisa
+      [listaLivros]="listaLivros"
+    ></app-resultado-pesquisa>
+  </div>
   <ng-template #telaInicial>
     <div class="imagens">
       <h1 class="titulo">

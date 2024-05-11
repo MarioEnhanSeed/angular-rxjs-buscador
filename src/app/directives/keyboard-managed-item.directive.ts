@@ -1,15 +1,15 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, OnDestroy } from '@angular/core';
+import { FocusService } from '../services/focus.service';
 
 @Directive({
   selector: '[appKMItem]',
 })
-export class KeyboardManagedItemDirective {
-  constructor(private elementRef: ElementRef<HTMLElement>) {}
-  public focus(): void {
-    this.elementRef.nativeElement.focus();
+export class KeyboardManagedItemDirective implements OnDestroy {
+  constructor(private el: ElementRef, private focusService: FocusService) {
+    this.focusService.registerItem(this.el.nativeElement);
   }
 
-  public isFocused(): boolean {
-    return this.elementRef.nativeElement === document.activeElement;
+  ngOnDestroy() {
+    this.focusService.unregisterItem(this.el.nativeElement);
   }
 }

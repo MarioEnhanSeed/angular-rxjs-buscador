@@ -12,6 +12,7 @@ export class ListaLivrosComponent implements OnInit, OnDestroy {
   listaLivros: Livro[] = [];
   campoBusca: string = '';
   subscription: Subscription;
+  resultadosPesquisa: Livro[][] = []; // Array para armazenar os resultados de cada pesquisa
 
   constructor(private service: BuscaLivroService) {}
 
@@ -20,19 +21,12 @@ export class ListaLivrosComponent implements OnInit, OnDestroy {
   }
 
   buscarLivros() {
-    if (
-      !this.listaLivros.some((livro) => livro.title.includes(this.campoBusca))
-    ) {
-      this.subscription = this.service.buscar(this.campoBusca).subscribe({
-        next: (items) => {
-          this.listaLivros = [
-            ...this.listaLivros,
-            ...this.resultadoPesquisaLivros(items),
-          ];
-        },
-        error: (error) => console.error(error),
-      });
-    }
+    this.subscription = this.service.buscar(this.campoBusca).subscribe({
+      next: (items) => {
+        this.resultadosPesquisa.push(this.resultadoPesquisaLivros(items));
+      },
+      error: (error) => console.error(error),
+    });
   }
 
   realizarPesquisa(campoBusca: string) {
