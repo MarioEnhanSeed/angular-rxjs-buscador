@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { KeyboardManagerDirective } from './directives/keyboard-manager.directive';
 import { KeyboardManagedItemDirective } from './directives/keyboard-managed-item.directive';
+import { ResultadoPesquisaComponent } from './views/resultado-pesquisa/resultado-pesquisa.component';
+import { SearchFieldComponent } from './componentes/search-field/search-field.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { KeyboardManagedItemDirective } from './directives/keyboard-managed-item
     ModalLivroComponent,
     KeyboardManagerDirective,
     KeyboardManagedItemDirective,
+    ResultadoPesquisaComponent,
+    SearchFieldComponent,
   ],
   imports: [
     BrowserModule,

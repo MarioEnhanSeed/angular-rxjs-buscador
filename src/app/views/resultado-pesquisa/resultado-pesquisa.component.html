@@ -1,0 +1,17 @@
+<div>
+  <h2 *ngIf="listaLivros?.length > 0">Resultado</h2>
+  <ul
+    class="container-card"
+    *ngIf="listaLivros?.length > 0; else telaInicial"
+    appKM
+  >
+    <li
+      appKMItem
+      *ngFor="let livro of listaLivros; let i = index"
+      #livroDaLista
+      tabindex="-1"
+    >
+      <app-livro [livro]="livro"></app-livro>
+    </li>
+  </ul>
+</div>

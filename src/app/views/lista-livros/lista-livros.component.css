@@ -122,12 +122,3 @@ section button {
   margin-left: 64px;
 }
 
-ul {
-  display: flex;
-  flex-direction: column;
-}
-
-li {
-  margin: 1rem 0;
-  list-style: none;
-}

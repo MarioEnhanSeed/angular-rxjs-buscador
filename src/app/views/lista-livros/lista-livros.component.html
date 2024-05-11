@@ -1,26 +1,10 @@
 <section class="container">
   <header>Que livro você procura?</header>
-  <div class="busca">
-    <input type="search" [(ngModel)]="campoBusca" (submit)="buscarLivros()" />
-    <button (click)="buscarLivros()">
-      <img src="assets/imagens/icone-busca.png" alt="Lupa de cor roxa" />
-    </button>
-  </div>
+  <app-search-field
+    (pesquisaRealizada)="realizarPesquisa($event)"
+  ></app-search-field>
   <p>Busque por assunto, autoria, nome...</p>
-  <ul
-    class="container-card"
-    *ngIf="listaLivros?.length > 0; else telaInicial"
-    appKM
-  >
-    <li
-      appKMItem
-      *ngFor="let livro of listaLivros; let i = index"
-      #livroDaLista
-      tabindex="-1"
-    >
-      <app-livro [livro]="livro"></app-livro>
-    </li>
-  </ul>
+  <app-resultado-pesquisa [listaLivros]="listaLivros"></app-resultado-pesquisa>
   <ng-template #telaInicial>
     <div class="imagens">
       <h1 class="titulo">
